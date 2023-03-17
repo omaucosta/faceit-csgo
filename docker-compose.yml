@@ -1,0 +1,23 @@
+version: '3.6'
+
+services:
+
+  minio:
+    image: 'bitnami/minio:latest'
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=passwordminio
+      - MINIO_DEFAULT_BUCKETS=raw,trusted,refined
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - ./minio_data:/data
+
+volumes:
+  dw-db-volume:
+
+networks:
+  default:
+    name: faceit-csgo
+    external: false
